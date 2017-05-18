@@ -1,0 +1,127 @@
+05-08
+1.Spring FrameWrok 특징
+2.전자정부 프레임워크 -> 모두 스프링 기반으로 가고 있어
+3.5,5회사들 다 자체 프레임 워크 가지고 있는데 -> 스프링 기반으로 만들고 있어.
+
+프레임워크 라이브러리 차이?
+프레임워크 -> 라이브러리들의 집합
+
+프레임 워크: 있는 그대로 가져다 쓰면서 커스터 마이징이 가능해
+라이브러리: 있는 그대로 가져다 쓰기만 해야해!! ->커스터 마이징 불가능!!
+
+
+====================================================
+스프링 프레임워크 (2003 로드존슨)
+
+SpringSource단체에서 개발하기 시작함
+=>구조적이고 간결하게 처리 - 개발자는 비즈니스 로직에 좀더 집중 할수 있도록 함. 
+
+EJB의 대체 기술 => 가볍다(각 기능별로 모듈화 되어 각 모듈안에 여러개의 lib로 구성되어 있음  필요한 모듈만 있으면 개발 가능)
+
+
+1.EJB기술 겨냥해서 만든 Framework(가볍다) ->경량의 frame 워크
+  EJB 는 싱글톤 같은 디자인 패턴 자세히 알지 못하면 만들지 못하고 무거워!!
+
+2.Spring DI 개념 제공 (Dependency Injection) ==================  IOC=inversion of Control 
+  의존관계있는 객체를 주입 ->흐름이 뒤바꼈다. (제어의 역행)
+  의존관계를 낮추기 위해 xml형태로 객체를 생성 해버리면 배포문서 xml 만 바꾸면 되니까!!!!
+	
+모듈화 : 기능별로 구분지어 주는 형태
+
+
+3.Spring AOP 개념 (ASpect Oriented Programing)
+관점 지향 프로그래밍
+
+ - 공통코드와 핵심 코드를 분리하자
+ex)공통코드 : session 유무 체크, db연결 닫기
+   핵심 코드 :쿼리문 제어
+
+핵심 코드에서 공통코드 호출하는 것은 밀접하게 연관이 있다 고 볼수 있어!!
+그래서 Spring에서는 이런 짓도 안하겠다..
+
+소스상에서는 자기가 해야하는 logic만 가지고 있고
+스프링 컨테이너를 통해 가지고 있어야해!!
+(핵심코드는 핵심코드만) (공통코드는 공통코드만) 중간 연결작업은 (컨테이너가) 해줄게!!!!
+
+결국 AOP는 결합도는 낮추면서 응집도는 올려주겠다!!
+
+(보안, 로깅, 세션유무체크, 예외처리, 트랜잭션!!)
+
+
+4. Spring web MVC 제공
+3teer layout 
+
+
+SPring 은 웹 전용 아니야!! -> 순수 자바 에서도 사용 가능해!!
+
+5.pojo 코딩 방식 지원(plain old java object) 원래 자바 객체 만들드시 만드는 방식 지원하겠다.
+  structuer1 에서 는 지원을 하지 않았어!!
+
+6.Spring transaction 지원
+
+
+7.Spring security 지원(보안 = 인증 + 권한)
+
+8.Spring DAO 지원(data 영속성에 관련된 frame 지원)
+myBatis , hibernate  등의 프레임 워크
+
+
+9.Spring titles 
+
+
+
+SPring 모듈 의존관계 찾기가 너무 힘들어!!!
+필요한거만 골라쓰기가 힘들어 -> 메이븐 프로젝트!!
+자체적으로 관리해주는 플러그인
+
+
+
+====================================================
+Maven 프로젝트 구조
+의존 관계 있는 라이브러리를 통합 관리 해주는 것.
+(pom.xml문서에 dependency 를 추가)
+
+SpringDI_01  
+/src/main/java
+src/main/resources
+src/test/java	
+
+
+
+
+Spring DI 방식
+1) 생성자
+ 	-기본형 주입 ->value 로 설정하고 있어 
+	-객체타입 주입 ->ref방식
+2) setXxx()
+
+
+======================================================
+SpringContatiner의 개념?
+BeanFactory->ApplicationContext->WebApplicationContext
+
+ApplicationContext 다국어 처리 등 기능 더 이써
+
+=>객체를 생성하고 소멸, 데이터 주입등의 객체 라이프사이클을 기본적으로 관리해준다.
+new ClasspathXmlApplicationContext("~.xml경로");
+    /classes/폴더 기준
+new FilsSystemXmlApplicationContext();
+  =>/프로젝트명 / 폴더 기준
+
+
+======================================================
+Spring DI 개념
+ = > 외부조립기로부터 객체를 생성해서 의존관계에 있는 객체를 주입해주는것
+
+
+->DI적용방법
+1)생성자 - value, ref
+2)setter - value,, ref
+
+
+
+->bean의 scope의 singleton , prototype의 차이
+ex)<bean class="test.Hello" id="hello">
+
+  -xml문서를 로딩하는 순간 객체를 메모리에 바로 생성한다.  
+   getBean("helllo")을 여러번 해도 매번 같은 객체를 주입받는다.
