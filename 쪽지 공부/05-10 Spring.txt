@@ -1,0 +1,10 @@
+05-10 Spring
+작성자 : 정광수
+
+
+생성자 +setter => 데이터 주입 value,ref
+
+1)주입되는 데이터 타입이 Collection  형태,
+2)~.xml 문서를 여러개 작성해서 import 하는 방법
+3)properties파일을 로딩해서 그안에 있는 정보 사용 하기
+4)setter를 대신하는 p namespace 사용 하기

@@ -1,0 +1,83 @@
+1)springFramework특징?
+  -2004년도 로드존슨이라는 사람이 책을 통해 소개시작.
+  springsource단체에서 개발하기 시작함.
+    -> 구조적이고 간결하게 처리 - 개발자는 비즈니스로직에
+        좀더 집중할수 있도록 함.
+
+  - EJB의 대체기술 =>  가볍다(각 기능별로 모듈화되어
+                       각 모듈안에 여러개의 lib로 구성되어 있음.
+                       필요한 모듈만 있으면 개발가능)  
+
+  - spring DI(Dependency Injection) = IoC(Inversion of Control)
+     =>객체와 객체간의 결합도를 최대한 낮춘다.
+     => springContainer(~.xml문서)를 통해 객체들의 생성 ~ 소멸을
+        관리하고 springContainer를 통해(외부조립기) 객체를 주입시켜준다.
+
+ - spring AOP(Aspect Oriented Programming) - 관점지향프로그래밍
+     => 코딩을하면 핵심코드 + 공통코드분리(보안,로깅,세션유무체크,예외처리,transaction처리)
+    
+ -spring WEB MVC
+   (Presentation Layer + Service Layer + Persistence Layer)
+
+ - POJO방식 코딩지원(Plain Old Java Object)
+    => 어떤 클래스를 상속하거나 구현하지 않고 내 맘대로 코딩가능.
+
+ - DATA영속성을 위한 다양한 프레임웍 제공
+   (JDBC, MyBatis, Hibernate,....)
+
+ - spring Transaction제공 => AOP개념을 반드시 알아야함.
+    여러개의 작업이 한번에 commit, rollback 처리하는것.
+
+- spring tiles 제공
+   => view에 관련된 template제공.
+
+- spring security제공
+   => 보안 = 인증 + 권한부여
+
+
+2) Maven란?
+   => 의존관계 있는 라이브러리를 통합관리해주는것.
+      (pom.xml문서에 dependency를 추가)
+
+
+3) springContainer개념?
+    BeanFactory -> ApplicationContext -> WebApplicationContext
+
+    => 객체를 생성하고 소멸, 데이터 주입등의 객체관련 라이프사이클을
+        기본적으로 관리해준다.
+
+       new ClassPathXmlApplicationContext("~.xml경로");
+           => classes/폴더기준
+
+       new FileSystemXmlApplicationContext("~.xml경로");
+           => 프로젝트명/폴더기준
+  
+
+ 4)  spring DI 개념
+     => 외부조립기로 부터 객체를 생성해서 의존관계에 있는 객체를
+        주입해주는것.
+
+     => DI 적용방법
+       1)  생성자 - value , ref
+       2)  setter - value  , ref
+
+  
+     => bean의 scope의 singleton , prototype의 차이
+     ex)<bean class="test.Hello" id="hello">
+           기본 scope="singleton" 이다.(사전초기화)
+         - xml문서를 로딩하는 순간 객체를 메모리에 바로 생성한다.
+           getBean("hello")을 여러번 해도 매번 같은 객체를 주입 받는다.
+
+
+       <bean class="test.Hello" id="hello" scope="prototype">
+         -xml문서를 로딩할때 생성하지 않는다.(지연초기화)
+          getBean("hello")할때 생성을해서 주입한다.
+          여러번 getBean("hello")를 하면 모두 다른 객체를 주입받는다.
+
+5) xml문서에서 namespace p요소 사용하기
+ <bean class="">
+	<property name="id" value="jang"/>
+</bean>
+위 문장을
+<bean class="" p:id=""jang/>
+
