@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- BookDTO -->
+
+<bean class="sample08.BookDTO" id="book1">
+<property name="subject" value="자유"></property>
+<property name="writer" value="정광수"></property>
+<property name="price" value="25000"></property>
+<property name="date" value="2017-05-10"></property>
+</bean>
+
+<bean class="sample08.BookDTO" id="book2">
+<property name="subject" value="교양"></property>
+<property name="writer" value="정진수"></property>
+<property name="price" value="15000"></property>
+<property name="date" value="2017-05-10"></property>
+
+</bean>
+
+
+<!-- BookDbutil -->
+<bean class="sample08.DbUtil" id="dbUtil" autowire="byType"/>
+<!-- MessageSender -->
+<bean class="sample08.MessageSender" id="messageSender"/>
+<!-- EmailSender -->
+<bean class="sample08.EmailSender" id="emailSender"/>
+
+
+<!-- BookDAOImpl -->
+<bean class="sample08.BookDAOImpl" id="bookDAOImpl" autowire="constructor"/>
+
+
+<!-- BookServcie Impl 2가지 방법 혼합으로 해야해 -->
+<!-- <bean class="sample08.BookServiceImpl" autowire="constructor" >
+<property name="emailSender" ref="emailSender"></property>
+<property name="messageSender" ref="messageSender"></property>
+</bean>
+ -->
+<bean class="sample08.BookServiceImpl" autowire="byType" >
+<constructor-arg ref="bookDAOImpl"></constructor-arg>
+</bean>
+
+
+
+
+
+<!-- BookController  -->
+<bean class="sample08.BookController"  id="bookController" autowire="constructor"/>
+
+
+
+
+</beans>

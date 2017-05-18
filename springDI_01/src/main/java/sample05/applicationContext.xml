@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="userBean" class="sample05.UserBean" primary="false">
+		<property name="id" value="kjjks12"></property>
+		<property name="name" value="정광수"></property>
+		<property name="phone" value="01035758152"></property>
+		
+		<property name="addr" value="광주광역시 서구 치평동"></property>
+	</bean>
+	<bean id="productBean" class="sample05.ProductBean">
+		<property name="p_name" value="당근"></property>
+		<property name="p_no" value="1"></property>
+		<property name="p_price" value="2000"></property>
+	</bean>
+	<bean id="orderMessageImpl" class="sample05.OrderMessageImpl">
+		<property name="orderId" value="1"></property>
+		<property name="message" value="빠른배송부탁드려용"></property>
+		<property name="userBean" ref="userBean"></property>
+		<property name="productBean" ref="productBean"></property>
+	</bean>
+</beans>

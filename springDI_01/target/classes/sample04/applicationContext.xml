@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean class="sample04.Student" id="studentDto">
+	 <property name="name" value="정광수"/>
+	 <property name="no" value="1"/>
+	 <property name="phone" value="010-3575-8152"/>
+	 <property name="addr" value="광주 광역시 서구 치평동"/>
+</bean>
+
+<bean class="sample04.StudentDaoImpl" id="studentDao"/>
+
+<bean class="sample04.StudentServiceImpl" id="studentService">
+<property name="studentDAO" ref="studentDao"/>
+</bean>
+
+<bean class="sample04.StudentController" id="studentController">
+<property name="student" ref="studentDto"/>
+<property name="studentService" ref="studentService"/>
+</bean>
+
+
+</beans>

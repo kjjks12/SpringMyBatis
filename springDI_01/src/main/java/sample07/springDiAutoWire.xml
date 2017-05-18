@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+ <bean class="sample07.MemberVo" id="memberVo">
+	<property name="id" value="jang"></property>
+	<property name="name" value="장희정"></property>
+	<property name="age" value="20"></property>
+</bean>
+ 
+  <bean class="sample07.MemberVo" id="memberVo2">
+	<property name="id" value="hee"></property>
+	<property name="name" value="김희선"></property>
+	<property name="age" value="20"></property>
+</bean>
+
+<!--autowire 속성 -->
+<!-- 
+
+1,2번은 Setter호출
+  1) byType: type이 같은 객체를 찾아  setXxx()호출해서 주입됨.(생성자로 호출 안됨) property ref 생략된거야!!
+  			문제점: 똑같은 객체 memberVo 2개 있으면 어떤게 들어갈지 몰라서 에러떠
+  			해결: 반드시 타입은 객체가 한개만 존재해야한다. 2개이상일경우 오류발생  이런 경우 byName으로 사용해야한다.
+  2) byName: id와 property명이 일치하는 setXxx()를 호출해서 주입
+  
+  3) constructor: 생성자 호출
+  				  동일한 객체가 한개인 경우에는 byType으로,
+  				  동일한 객체가 여러개 인 경우에는 byName으로
+  				  (id와 생성자의 매개변수 이름과 일치)
+  				  멤버변수 이름이 아니야!! 착각 ㄴㄴ
+ -->
+
+
+<bean class="sample07.MemberController" id="controller" autowire="constructor">
+
+
+</bean>
+
+</beans>

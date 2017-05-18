@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 다른 xml 문서 import 하기 -->
+<import resource="classpath:sample06/springDIlist01.xml"/>
+
+
+<bean class="sample06.ListBean" id="listBean">
+<property name="intList" >
+	<list>
+		<value>10</value>
+		<value>20</value>
+		<value>30</value>
+		<value>40</value>
+		<value>50</value>
+		<value>60</value>
+	</list>
+</property>
+
+
+
+<property name="strList">
+	<list>
+		<value>사과</value>
+		<value>딸기</value>
+		<value>포도</value>
+		<value>배</value>
+		<value>자몽</value>
+		<value>오렌지</value>
+	</list>
+</property>
+
+<property name="customerList">
+	<list>
+	<ref bean="cu1"/>
+	<ref bean="cu2"/>
+	<ref bean="cu3"/>
+	<ref bean="cu4"/>
+	<ref bean="cu5"/>
+	<bean class="sample06.Customer">
+	<property name="empno" value="500"></property>
+	<property name="job" value="백수"></property>
+	<property name="name" value="정진수"></property>
+	</bean>
+	
+	<bean class="sample06.Customer" p:empno="600" p:job="${job}" p:name="${ename}"></bean>
+	
+	</list>
+</property>
+
+
+</bean>
+
+</beans>

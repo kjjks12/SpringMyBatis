@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bookVo" class="sample03.BookVo">
+		<constructor-arg value="교양" index="0" />
+		<constructor-arg value="정광수" index="1" />
+		<constructor-arg type="int" value="25000" index="2" />
+		<constructor-arg value="2017-05-08" index="3" />
+	</bean>
+
+	<bean id="bookDaoImpl" class="sample03.BookDAOImpl"></bean>
+	
+	<bean id="bookController" class="sample03.BookController">
+		<constructor-arg ref="bookDaoImpl" index="0" />
+		<constructor-arg ref="bookVo" index="1" />
+	</bean>
+
+
+
+</beans>

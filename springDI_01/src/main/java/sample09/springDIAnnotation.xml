@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+
+<!-- @Required를 사용하기 위해 선언 -->
+<!-- <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/> -->
+<!-- @AutoWired를 사용하기 위해 선언 -->
+<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> -->
+
+
+<!--@Required @AutoWired @Resource 모두적용 -->
+<context:annotation-config></context:annotation-config>
+
+
+<!-- resource 는 동일한 객체가 여러개 있을때 유용해용 -->
+
+<bean class="sample09.EmpDTO" id="empDTO">
+<property name="empno" value="9899"/><!-- 필수 요소 설정 -->
+</bean>
+
+<bean class="sample09.EmpDTO" id="dto">
+<property name="empno" value="9000"/><!-- 필수 요소 설정 -->
+<property name="ename" value="scott"/>
+<property name="job" value="king"/>
+<qualifier value="test"></qualifier>
+</bean>
+
+
+
+<bean class="sample09.EmpService" id="empService"/>
+<bean class="sample09.EmpController" id="empController"/>
+
+
+
+
+<bean class="sample09.ResrouceBean" id="resrouceBean"/>
+
+</beans>
