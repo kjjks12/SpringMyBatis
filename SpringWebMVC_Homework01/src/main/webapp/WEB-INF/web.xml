@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- Front Controller 역할 하는놈 딱 한개만 등록해놓았어 -->
+	<!-- Spring 진입접(FrontController) =>DispatcherServlet 생성될때 init이 호출되면서 bean 
+		설정문서 xml 파일을 로딩한다.(기본 :WEB_INF밑에  serveletname-servlet.xml): appServlet-servlet.xml bean 
+		설정문서 로딩되면서 WebApplicationContext 생성된다 =>SpringContainer -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+		<!-- Container가 시작되는 시점 -->
+		<!-- 제가 일기론 서블릿주기에 init()메소드의 실행을 서버스타트시 우선권을 주는 것으로 알고 있습니다.
+		 서블릿에 들어올때 	맨처음 실행되는 init()메소드를 호출함으로써 한번 로드된 메모리나 풀.
+			그리고 예를 들어서 struts_config같은 것들을 스타트시 
+			한번 로드되는것이죠. -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+   <filter-name>charaterEncoding</filter-name>
+   <filter-class>
+     org.springframework.web.filter.CharacterEncodingFilter
+   </filter-class>
+    <init-param>
+       <param-name>encoding</param-name>
+       <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>charaterEncoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+	
+
+</web-app>

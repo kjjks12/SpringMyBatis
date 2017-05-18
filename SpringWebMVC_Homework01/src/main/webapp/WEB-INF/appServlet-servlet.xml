@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<context:component-scan base-package="com.jgs.controller"></context:component-scan>
+
+	<!-- view Resolver 등록 -->
+	<!-- View 를 jsp 문서로 이동시켜주는 전용 클래스 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 폴더 경로 지정 -->
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<!-- 확장자 설정 -->
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+
+
+
+</beans>

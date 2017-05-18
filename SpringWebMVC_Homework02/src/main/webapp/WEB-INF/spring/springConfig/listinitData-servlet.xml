@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- product 생성 -->
+	<bean class="com.jgs.model.dto.ProductDTO" id="dto1">
+		<property name="code" value="A01"></property>
+		<property name="name" value="새우깡"></property>
+		<property name="price" value="2500"></property>
+		<property name="info" value="짜고 맛나다"></property>
+	</bean>
+	<bean class="com.jgs.model.dto.ProductDTO" id="dto2">
+		<property name="code" value="A02"></property>
+		<property name="name" value="칸초"></property>
+		<property name="price" value="5000"></property>
+		<property name="info" value="맛은 있으나 창렬"></property>
+	</bean>
+	<bean class="com.jgs.model.dto.ProductDTO" id="dto3">
+		<property name="code" value="A03"></property>
+		<property name="name" value="초코파이"></property>
+		<property name="price" value="8500"></property>
+		<property name="info" value="초코파이는 오리온"></property>
+	</bean>
+</beans>
